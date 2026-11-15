@@ -6,7 +6,7 @@ data:
   index.html: |
     <html>
       <body>
-      {{- range $index, $item .Values.subjects }}
+      {{- range $index, $item := .Values.subjects }}
         <h1 style="color: {{ index $.Values.colors (mod $index 3)}}"> Hello {{ $item}} </h1>
       {{- end}}
       </body>
