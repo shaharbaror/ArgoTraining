@@ -17,6 +17,6 @@ globals:
 
 appName: httpd
 replicaCount: 3
-image: registry.access.redhat.com/ubi9/httpd-24.
-internalPort: 8080
+image: httpd:2.4
+internalPort: 80
 externalPort: 81
