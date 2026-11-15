@@ -15,3 +15,8 @@ colors:
 globals:
 
 
+appName: httpd
+replicaCount: 3
+image:  httpd:2.4
+internalPort: 80
+externalPort: 81

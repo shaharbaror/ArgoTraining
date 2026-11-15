@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: chart-config
 data:
-  html: |
+  index.html: |
     <html>
       <body>
       {{- range $index, $item .Values.subjects }}
