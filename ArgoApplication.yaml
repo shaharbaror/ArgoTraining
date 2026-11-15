@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/shaharbaror/ArgoTraining.git
+    targetRevision: HEAD # Can be a branch, tag, or commit SHA
+    path: myChart     # Path within the repo containing your K8s manifests
+    helm:
+      valueFiles:
+      - values.yaml
+
+  # Where the manifests should be deployed
+  destination:
+    server: https://kubernetes.default.svc # correct in-cluster address
+    namespace: webserver
+
+  # Optional: Configure automated syncing
+  syncPolicy:
+    automated:
+      prune: true    # Deletes resources removed from Git
+      selfHeal: true # Reverts manual changes made directly in the cluster
+    syncOptions:
+      - CreateNamespace=true # Automatically creates the destination namespace if missing
